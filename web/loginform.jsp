@@ -24,7 +24,7 @@
   <h2>Login</h2>
   <hr>
 
-  <form>
+  <form action="login.jsp" method="post">
     <table>
       <tr>
         <td>아이디(이메일)</td>

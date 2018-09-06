@@ -23,7 +23,7 @@
 <div class="content">
   <h2>SignUp</h2>
 
-  <form>
+  <form action="signUpSuccess.jsp" method="post">
     <table>
       <tr>
         <td><label for="id">아이디(이메일)</label></td>
