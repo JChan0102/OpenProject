@@ -25,14 +25,18 @@ String pwd = request.getParameter("pwd");
 </style>
 </head>
 <body>
+
 <%@include file="menu.jsp"%>
 <div class="content">
     <h2>Login</h2>
     <hr>
-    <h1>아이또는 비번이 틀려요 </h1>
+    <h1>아이디 또는 비번이 틀려요 </h1>
     <h1><a href="loginform.jsp">다시 로그인 해보세요</a> </h1>
 <% if(id!=null&&pwd!=null){
     if(id.equals("asd")&&pwd.equals("qwe")){
+
+        request.getSession(false).setAttribute("userId",id);
+         request.getSession(false).setAttribute("userName","박종찬");
         response.sendRedirect("myPage.jsp");
     }
 
