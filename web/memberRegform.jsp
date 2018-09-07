@@ -26,20 +26,20 @@
   <form action="signUpSuccess.jsp" method="post">
     <table>
       <tr>
-        <td><label for="id">아이디(이메일)</label></td>
-        <td><input type="text" name="id" id="id"></td>
+        <td><label for="userId">아이디(이메일)</label></td+>
+        <td><input type="text" name="userId" id="userId"></td>
       </tr>
       <tr>
-        <td><label for="pwd">비밀번호</label></td>
-        <td><input type="password" name="pwd" id="pwd"></td>
+        <td><label for="userPwd">비밀번호</label></td>
+        <td><input type="password" name="userPwd" id="userPwd"></td>
       </tr>
       <tr>
-        <td><label for="name">이름</label></td>
-        <td><input type="text" name="name" id="name"></td>
+        <td><label for="userName">이름</label></td>
+        <td><input type="text" name="userName" id="userName"></td>
       </tr>
       <tr>
-        <td><label for="img">사진</label></td>
-        <td><input type="file" name="img" id="img"></td>
+        <td><label for="userPhoto">사진</label></td>
+        <td><input type="file" name="userPhoto" id="userPhoto"></td>
       </tr>
       <tr>
         <td colspan="2" style="text-align: center"> <input type="submit" value="등록"></td>

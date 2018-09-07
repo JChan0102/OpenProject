@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("utf-8");
-    String id = (String) request.getSession(false).getAttribute("userId");
-    String name = (String) request.getSession(false).getAttribute("userName");
-    if (id == null) {
+
+    memberVO member = (memberVO) request.getSession(false).getAttribute("user");
+    if (member == null) {
 %>
 <script>
     alert("로그인 후 사용가능합니다!");
@@ -49,9 +49,9 @@
 
         <table>
             <tr>
-                <td>id : <%=id%>
+                <td>id : <%=member.getUserId()%>
                 </td>
-                <td>이름 : <%=name%>
+                <td>이름 : <%=member.getUserName()%>
                 </td>
             </tr>
         </table>
