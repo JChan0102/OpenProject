@@ -1,6 +1,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="com.openproject.memberVO" %><%--
+<%@ page import="com.openproject.memberVO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-06
@@ -15,12 +17,16 @@
     String id = request.getParameter("userId");
     String pwd = request.getParameter("userPwd");
     // Map 선언
-    Map members = new HashMap();
+    //Map members = new HashMap();
 
+    //ArrayList 선언
+    List members = new ArrayList<memberVO>();
     //만약 application에 저장된 members 라는 속성이 존재 한다면
     //members에 선언해줌
     if (application.getAttribute("members") != null) {
-        members = (HashMap) application.getAttribute("members");
+
+        //members = (HashMap) application.getAttribute("members");
+        members=(ArrayList) application.getAttribute("members");
         //System.out.println(application.getAttribute("members").toString());
     }
 
@@ -50,20 +56,38 @@
         <%
         //id와 pwd가 null이 아니면
         if(id!=null&&pwd!=null){
-// members에 id라는 key가 존재한다면
-    if(members.containsKey(id)){
+
+
+
+//List시 get(index)에 null이 아니고 input으로 입력 받은 id와 pwd값이 일치하면 redirect
+    for(int i=0;i<members.size();i++){
+        if(members.get(i)!=null){
+        memberVO memberCK = (memberVO) members.get(i);
+            if(memberCK.getUserId().equals(id)&&memberCK.getUserPwd().equals(pwd)){
+
+                request.getSession(false).setAttribute("user", new memberVO(memberCK.getUserId(),"",memberCK.getUserName(),memberCK.getUserPhoto()));
+                response.sendRedirect("myPage.jsp");
+            }
+        }
+
+
+    }
+    }
+    // members에 id라는 key가 존재한다면
+//    if(members.containsKey(id)){
 //아이디 값에 해당하는 memberVO값 받아오기
-    memberVO memberCk = (memberVO) members.get(id);
+//    memberVO memberCk = (memberVO) members.get(id);
 //해당 아이디와 pwd와 일치하면
-if(id.equals(memberCk.getUserId())&&pwd.equals(memberCk.getUserPwd())){
+// if(id.equals(memberCk.getUserId())&&pwd.equals(memberCk.getUserPwd())){
     //세션에 저장함 세션에 저장할떄는 pwd값은 ""로 입력
     //새로 생성안하고 map에 있는 객체를 사용하게되면 객체의 비밀번호를 setUserPwd("")하면 map에있는 원래 객체값의 pwd도 ""이 되므로 다음에 로그인을 할수가 없다.
-        request.getSession(false).setAttribute("user", new memberVO(memberCk.getUserId(),"",memberCk.getUserName(),memberCk.getUserPhoto()));
-        response.sendRedirect("myPage.jsp");
-        }
-    }
+//        request.getSession(false).setAttribute("user", new memberVO(memberCk.getUserId(),"",memberCk.getUserName(),memberCk.getUserPhoto()));
+ //       response.sendRedirect("myPage.jsp");
+//        }
+ //   }
 
-}%>
+//}
+%>
 
 </body>
 </html>

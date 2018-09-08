@@ -1,7 +1,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="com.openproject.memberVO" %><%--
+<%@ page import="com.openproject.memberVO" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-06
@@ -17,15 +18,18 @@
     String name = request.getParameter("userName");
     String img = request.getParameter("userPhoto");
     // 키는 String형식과 값은 memberVO인 HashMap()생성
-    Map members = new HashMap<String, memberVO>();
-
+    // Map members = new HashMap<String, memberVO>();
+    List members = new ArrayList<memberVO>();
     //만약 application에 저장된 members 라는 속성이 존재 한다면
     //members에 선언해줌
     if (application.getAttribute("members") != null) {
-        members = (HashMap) application.getAttribute("members");
+
+        //  members = (HashMap) application.getAttribute("members");
+        members = (ArrayList) application.getAttribute("members");
     }
     //members에 키는 id로 값은 memberVO객체로 새로 만들어 put해줌
-    members.put(id, new memberVO(id, pwd, name, img));
+    //  members.put(id, new memberVO(id, pwd, name, img));
+    members.add(new memberVO(id, pwd, name, img));
 
     //application에 members라는 속성의 값을 members값으로 엎어치기해줌
     application.setAttribute("members", members);

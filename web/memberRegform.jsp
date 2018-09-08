@@ -26,7 +26,7 @@
     <form action="signUpSuccess.jsp" method="post">
         <table>
             <tr>
-                <td><label for="userId">아이디(이메일)</label></td+>
+                <td><label for="userId">아이디(이메일)</label></td>
                 <td><input type="text" name="userId" id="userId"></td>
             </tr>
             <tr>

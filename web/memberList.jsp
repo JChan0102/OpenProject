@@ -1,6 +1,4 @@
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Iterator" %><%--
+<%@ page import="java.util.*" %><%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-08
@@ -46,13 +44,21 @@
         //만약 application에 저장된 members 라는 속성이 존재 한다면
         //members에 선언해줌
         if (application.getAttribute("members") != null) {
-            Map members = (HashMap) application.getAttribute("members");
+
+         //   Map members = (HashMap) application.getAttribute("members");
+            List members = (ArrayList) application.getAttribute("members");
 //Iterator로 key값 정렬
-            Iterator membersKey = members.keySet().iterator();
+           // Iterator membersKey = members.keySet().iterator();
             //membersKey 다음 값이 존재하면
-            while (membersKey.hasNext()) {
+            //while (membersKey.hasNext()) {
+
+
+            //list for문 돌림
+            for (int i = 0; i<members.size();i++){
+
                 //member 변수에 해당 키의 밸류값 저장
-                memberVO member = (memberVO) members.get(membersKey.next());
+              //  memberVO member = (memberVO) members.get(membersKey.next());
+                memberVO member = (memberVO) members.get(i);
     //id와 name 을 출력하는 tr,td작성
     %>
     <tr>
