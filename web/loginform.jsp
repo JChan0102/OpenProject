@@ -7,42 +7,42 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>$Title$</title>
     <link rel="stylesheet" href="css/default.css">
     <style>
-      h2, td{
-        padding-bottom: 10px;
-        padding-top: 10px;
-      }
+        h2, td {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
 
     </style>
-  </head>
-  <body>
-  <%@include file="menu.jsp"%>
+</head>
+<body>
+<%@include file="menu.jsp" %>
 <div class="content">
-  <h2>Login</h2>
-  <hr>
+    <h2>Login</h2>
+    <hr>
 
-  <form action="login.jsp" method="post">
-    <table>
-      <tr>
-        <td>아이디(이메일)</td>
-        <td><input type="text" name="userId"></td>
-      </tr>
+    <form action="login.jsp" method="post">
+        <table>
+            <tr>
+                <td>아이디(이메일)</td>
+                <td><input type="text" name="userId"></td>
+            </tr>
 
-      <tr>
-        <td>비밀번호</td>
-        <td><input type="password" name="userPwd"></td>
-      </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" name="userPwd"></td>
+            </tr>
 
-      <tr>
-        <td colspan="2" style="text-align: center"><input type="submit" value="로그인"></td>
-      </tr>
-    </table>
-  </form>
+            <tr>
+                <td colspan="2" style="text-align: center"><input type="submit" value="로그인"></td>
+            </tr>
+        </table>
+    </form>
 
 </div>
 
-  </body>
+</body>
 </html>

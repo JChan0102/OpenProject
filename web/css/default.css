@@ -1,36 +1,43 @@
 @charset "UTF-8";
 /*    float:left를 사용할꺼면  overflow:hidden으로 감싸줄것.      */
-*{
+* {
     padding: 0px;
     margin: 0px;
 }
-#gnd{  /* 네비게이션 ul 부분 스타일 */
+
+#gnd { /* 네비게이션 ul 부분 스타일 */
     overflow: hidden;
     border-top: 1px solid #333333;
     border-bottom: 1px solid #333333;
 }
+
 /* 네비게이션 ul 안의 li 부분 스타일 */
-#gnd>li{
+#gnd > li {
     float: left;
     padding: 10px;
     list-style: none;
 
 }
+
 /* navi의 a 에대한 스타일 */
-.navia{
+.navia {
     color: black;
     text-decoration: none;
 }
-.navia:hover{
+
+.navia:hover {
     color: red;
 }
-.navia:visited{
-    color:black;
+
+.navia:visited {
+    color: black;
 }
-h1.headtitle{
+
+h1.headtitle {
     padding: 15px;
     margin-left: 10px;
 }
-.content{
+
+.content {
     padding-left: 15px;
 }

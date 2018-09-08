@@ -6,11 +6,11 @@ public class memberVO {
     private String userName;
     private String userPhoto;
 
-    public memberVO(String userId, String userPwd, String userName, String userPhoto){
-     this.userId=userId;
-     this.userPwd=userPwd;
-     this.userName=userName;
-     this.userPhoto=userPhoto;
+    public memberVO(String userId, String userPwd, String userName, String userPhoto) {
+        this.userId = userId;
+        this.userPwd = userPwd;
+        this.userName = userName;
+        this.userPhoto = userPhoto;
     }
 
 

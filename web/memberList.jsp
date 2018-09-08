@@ -13,58 +13,67 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/default.css">
     <style>
-        h2, td{
+        h2, td {
             padding-bottom: 10px;
             padding-top: 10px;
         }
-        td{
+
+        td {
             text-align: center;
             border: 1px solid black;
             width: 100px;
+        }
+        .tablehead{
+            background-color: gray;
         }
 
     </style>
 </head>
 <body>
 
-<%@include file="menu.jsp"%>
+<%@include file="menu.jsp" %>
 <h2>회원리스트</h2>
 <table>
+    <tr class="tablehead">
+        <td>
+            Id
+        </td>
+        <td>
+            name
+        </td>
+    </tr>
+    <%
+        //만약 application에 저장된 members 라는 속성이 존재 한다면
+        //members에 선언해줌
+        if (application.getAttribute("members") != null) {
+            Map members = (HashMap) application.getAttribute("members");
+//Iterator로 key값 정렬
+            Iterator membersKey = members.keySet().iterator();
+            //membersKey 다음 값이 존재하면
+            while (membersKey.hasNext()) {
+                //member 변수에 해당 키의 밸류값 저장
+                memberVO member = (memberVO) members.get(membersKey.next());
+    //id와 name 을 출력하는 tr,td작성
+    %>
     <tr>
-    <td>
-       Id
-    </td>
-    <td>
-        name
-    </td>
-    </tr>
-    <%
-    if(application.getAttribute("members")!=null){
-        Map members = (HashMap)application.getAttribute("members");
-
-        Iterator membersKey= members.keySet().iterator();
-        while (membersKey.hasNext()){
-            memberVO member = (memberVO) members.get(membersKey.next());
-            %>
-            <tr>
-                <td>
-                    <%=member.getUserId()%></td>
-        <td><%=member.getUserName()%></td>
+        <td>
+            <%=member.getUserId()%>
+        </td>
+        <td><%=member.getUserName()%>
+        </td>
     </tr>
 
     <%
 
+
+            }
 
         }
-
-    }
 
     %>
 
 
 </table>
-
-
 
 
 </body>
