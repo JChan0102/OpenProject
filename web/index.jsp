@@ -13,5 +13,6 @@
 </head>
 <body>
 <%@include file="menu.jsp" %>
+ 환영합니다 :)
 </body>
 </html>

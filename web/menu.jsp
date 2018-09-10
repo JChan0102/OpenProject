@@ -8,13 +8,14 @@
 <%@ page import="com.openproject.memberVO" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<% request.setCharacterEncoding("UTF-8");%>
+<% request.setCharacterEncoding("UTF-8");
+    memberVO menumember = (memberVO) request.getSession(false).getAttribute("user");%>
 <h1 class="headtitle"><a class="navia" href="index.jsp">OpenProject</a></h1>
 <ul id="gnd">
     <li><a class="navia" href="index.jsp">HOME</a></li>
 
     <li><a class="navia" href="memberRegform.jsp">회원가입</a></li>
-    <% memberVO menumember = (memberVO) request.getSession(false).getAttribute("user");
+    <%
 
         if (menumember == null) {
     %>

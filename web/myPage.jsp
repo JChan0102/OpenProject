@@ -9,14 +9,14 @@
 <%
     request.setCharacterEncoding("utf-8");
 
-    memberVO member = (memberVO) request.getSession(false).getAttribute("user");
+   memberVO member = (memberVO) request.getSession(false).getAttribute("user");
     if (member == null) {
 %>
 <script>
     alert("로그인 후 사용가능합니다!");
     location.href = "loginform.jsp";
 </script>
-<%}%>
+<%} else {%>
 <html>
 <head>
     <title>Title</title>
@@ -53,6 +53,7 @@
                 </td>
                 <td>이름 : <%=member.getUserName()%>
                 </td>
+                <%}%>
             </tr>
         </table>
 
