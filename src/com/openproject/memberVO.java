@@ -5,7 +5,7 @@ public class memberVO {
     private String userPwd;
     private String userName;
     private String userPhoto;
-
+  public memberVO(){}
     public memberVO(String userId, String userPwd, String userName, String userPhoto) {
         this.userId = userId;
         this.userPwd = userPwd;
@@ -13,6 +13,15 @@ public class memberVO {
         this.userPhoto = userPhoto;
     }
 
+    @Override
+    public String toString() {
+        return "memberVO{" +
+                "userId='" + userId + '\'' +
+                ", userPwd='" + userPwd + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userPhoto='" + userPhoto + '\'' +
+                '}';
+    }
 
     public String getUserId() {
         return userId;

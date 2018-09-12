@@ -7,3 +7,5 @@ Open Project !
 2018.09.08 15:48 ArrayList형식 추가 , Map형식 주석처리
 
 2018.09.10 20:20 ID저장 체크박스 JSP 구현, ID저장 체크박스 jQuery 구현 주석처리,  ArrayList형식 주석처리
+
+2018.09.12 15:50 EL, JSTL 적용, 멤버리스트 삭제,수정 구현, 변경된 JAVA 주석처리  

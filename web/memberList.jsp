@@ -6,6 +6,23 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%if(request.getParameter("modi")!=null){
+%>
+<jsp:useBean id="member" class="com.openproject.memberVO" scope="request"/>
+<jsp:setProperty name="member" property="*"/>
+<%
+      if(member.getUserPhoto()==null)
+      {
+          member.setUserPhoto(request.getParameter("preuserPhoto"));
+      }
+
+  members.put(request.getParameter("modi"),member);
+}
+%>
 <html>
 <head>
     <title>Title</title>
@@ -37,10 +54,19 @@
             Id
         </td>
         <td>
+            pwd
+        </td>
+        <td>
             name
         </td>
+        <td>
+            photo
+        </td>
+        <td>
+            수정/삭제
+        </td>
     </tr>
-    <%
+<%--    <%
         //만약 application에 저장된 members 라는 속성이 존재 한다면
         //members에 선언해줌
         if (application.getAttribute("members") != null) {
@@ -61,23 +87,25 @@
              //   memberVO member = (memberVO) members.get(i);
     //id와 name 을 출력하는 tr,td작성
     %>
-    <tr>
-        <td>
-            <%=member.getUserId()%>
-        </td>
-        <td><%=member.getUserName()%>
-        </td>
-    </tr>
-
     <%
-
-
             }
-
         }
+    %>--%>
+  <c:forEach items="${members}" var="member">
+      <tr>
+          <td>
+              ${member.value.userId}
+          </td>
+          <td>${member.value.userPwd}
+          </td>
+          <td>${member.value.userName}
+          </td>
+          <td>${member.value.userPhoto}
+          </td>
+          <td><a href="remove.jsp?modiid=${member.value.userId}"><button>수정</button></a>/<a href="remove.jsp?removeid=${member.value.userId}"><button>삭제</button></a></td>
+      </tr>
 
-    %>
-
+  </c:forEach>
 
 </table>
 

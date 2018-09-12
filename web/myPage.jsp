@@ -6,17 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%
-    request.setCharacterEncoding("utf-8");
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-   memberVO member = (memberVO) request.getSession(false).getAttribute("user");
-    if (member == null) {
-%>
-<script>
-    alert("로그인 후 사용가능합니다!");
-    location.href = "loginform.jsp";
-</script>
-<%} else {%>
+
+<c:if test="${!(sessionScope.containsKey('user'))}">
+
+    <script>
+        alert("로그인 후 사용가능합니다!");
+        location.href = "loginform.jsp";
+    </script>
+
+</c:if>
+
 <html>
 <head>
     <title>Title</title>
@@ -49,12 +50,11 @@
 
         <table>
             <tr>
-                <td>id : <%=member.getUserId()%>
+                <td>id : ${sessionScope.get('user').getUserId()}
                 </td>
-                <td>이름 : <%=member.getUserName()%>
+                <td>이름 :${sessionScope.get('user').getUserName()}
                 </td>
-                <%}%>
-            </tr>
+                            </tr>
         </table>
 
 

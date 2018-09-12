@@ -10,6 +10,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
 <%
     request.setCharacterEncoding("utf-8");
 //login form에서 sumit 받은 값 String 변수에 저장한다.
@@ -17,8 +19,8 @@
     String id = request.getParameter("userId");
     String pwd = request.getParameter("userPwd");
     String ck = request.getParameter("idck");
-
-
+%>
+<%--<%
     // Map 선언
 
     Map members = new HashMap();
@@ -32,7 +34,8 @@
        // members=(ArrayList) application.getAttribute("members");
         //System.out.println(application.getAttribute("members").toString());
     }
-%>
+%>--%>
+
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
@@ -51,15 +54,12 @@
 
 <%@include file="menu.jsp" %>
 <div class="content">
-    <h2>Login</h2>
-    <hr>
-    <h1>아이디 또는 비번이 틀려요 </h1>
-    <h1><a href="loginform.jsp">다시 로그인 해보세요</a></h1>
+
+
+
         <%
         //id와 pwd가 null이 아니면
         if(id!=null&&pwd!=null){
-
-
 
 //List시 get(index)에 null이 아니고 input으로 입력 받은 id와 pwd값이 일치하면 redirect
  //   for(int i=0;i<members.size();i++){
@@ -95,11 +95,19 @@ if(id.equals(memberCk.getUserId())&&pwd.equals(memberCk.getUserPwd())){
     //새로 생성안하고 map에 있는 객체를 사용하게되면 객체의 비밀번호를 setUserPwd("")하면 map에있는 원래 객체값의 pwd도 ""이 되므로 다음에 로그인을 할수가 없다.
     request.getSession(false).setAttribute("user", new memberVO(memberCk.getUserId(),"",memberCk.getUserName(),memberCk.getUserPhoto()));
         response.sendRedirect("myPage.jsp");
-        }
-    }
+        } else {
+            request.setAttribute("msg","비번이 틀렸습니다.");
+%> <jsp:forward page="loginform.jsp"/><%
+}
 
+    } else {
+            request.setAttribute("msg","아이디가 존재하지 않습니다.");
+%> <jsp:forward page="loginform.jsp"/><%
+}
+} else {
+             request.setAttribute("msg","아이디, 비번은 필수 입력입니다.");
+%> <jsp:forward page="loginform.jsp"/><%
 }
 %>
-
 </body>
 </html>
