@@ -16,10 +16,16 @@
     //sql 메서드를 사용할 객체 생성
     memberDAO sql = memberDAO.getInstance();
     // member값을 insert메서드를 통해 db에 저장해줌
-    sql.insertMember(member.getUserId(),member.getUserPwd(),member.getUserName(),member.getUserPhoto());
-%>
+    int cnt = sql.insertMember(member.getUserId(),member.getUserPwd(),member.getUserName(),member.getUserPhoto());
+    String loca = "loginform.jsp";
+    if(cnt!=1){
+        request.setAttribute("msg","이미 가입하신 이메일입니다!");
+        loca = "memberRegform.jsp";
+
+    }
+        %><jsp:forward page="<%=loca%>"/>
 <%--가입 후 loginform에 입력--%>
-<c:redirect url="loginform.jsp"/>
+
 
 <html>
 <head>

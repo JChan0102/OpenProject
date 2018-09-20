@@ -81,8 +81,13 @@
         //memberInfo에 저장된 모든 컬럼을 가져오는 select문을 list에 저장.
         List<memberVO> memberlist = sql.selectMemberAll();
         //el을 사용하기 위해 setAtrribute 해줌
-         request.setAttribute("members",memberlist);%>
+
+         request.setAttribute("members",memberlist);
+
+    %>
     <%-- List의 값 하나씩 출력.--%>
+<c:choose>
+    <c:when test="${members.size()!=0}">
   <c:forEach items="${members}" var="member">
       <tr>
           <td>
@@ -100,7 +105,13 @@
       </tr>
 
   </c:forEach>
-
+    </c:when>
+    <c:otherwise>
+        <tr>
+            <td colspan="5">등록된 회원 정보가 없습니다.</td>
+        </tr>
+    </c:otherwise>
+</c:choose>
 </table>
 
 

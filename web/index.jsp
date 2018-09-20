@@ -17,7 +17,6 @@
 <div style="border:1px solid #dedede; width:600px; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;"
      id="clock">
 </div>
-
 <script>
 
     function printClock() {

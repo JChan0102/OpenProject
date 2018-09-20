@@ -25,7 +25,8 @@ public class memberDAO {
 
     String jdbcUrl = "jdbc:apache:commons:dbcp:open";
 
-    public void insertMember(String userId, String userPwd, String userName, String userPhoto) {
+    public int insertMember(String userId, String userPwd, String userName, String userPhoto) {
+        int cnt=0;
         try {
             conn = DriverManager.getConnection(jdbcUrl);
             String sql = "insert into memberinfo values (?,?,?,?)";
@@ -36,7 +37,8 @@ public class memberDAO {
             pstmt.setString(2, userPwd);
             pstmt.setString(3, userName);
             pstmt.setString(4, userPhoto);
-            pstmt.executeUpdate();
+           cnt= pstmt.executeUpdate();
+           return cnt;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -44,7 +46,7 @@ public class memberDAO {
             close(conn);
         }
 
-
+        return cnt;
     }
 
 
