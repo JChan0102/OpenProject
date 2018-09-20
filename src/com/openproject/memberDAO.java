@@ -9,17 +9,12 @@ public class memberDAO {
     ResultSet rs = null;
     Statement stmt = null;
     PreparedStatement pstmt = null;
-    String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-    String id = "scott";
-    String pwd = "tiger";
 
+String jdbcUrl="jdbc:apache:commons:dbcp:open";
 
     public void insertMember(String userId, String userPwd, String userName, String userPhoto) {
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-
-            conn = DriverManager.getConnection(url, id, pwd);
-
+            conn = DriverManager.getConnection(jdbcUrl);
             String sql = "insert into memberinfo values (?,?,?,?)";
 
             pstmt = conn.prepareStatement(sql);
@@ -55,9 +50,7 @@ public class memberDAO {
 
     public memberVO selectMember(String userId) {
         try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-
-            conn = DriverManager.getConnection(url, id, pwd);
+            conn = DriverManager.getConnection(jdbcUrl);
 
             String sql = "select * from memberinfo where userid=?";
             pstmt = conn.prepareStatement(sql);
@@ -69,9 +62,6 @@ public class memberDAO {
 
             }
 
-        } catch (ClassNotFoundException e) {
-            System.out.println("해당 클래스를 찾을수 없습니다.");
-            System.out.println("DBMS 드라이버 로드 실패");
         } catch (SQLException g) {
             System.out.println("DB연결 실패");
             g.printStackTrace();
@@ -107,10 +97,8 @@ public class memberDAO {
         List<memberVO> members= new ArrayList<>();
 
         try{
-            Class.forName("oracle.jdbc.driver.OracleDriver");
 
-            conn = DriverManager.getConnection(url, id, pwd);
-
+            conn = DriverManager.getConnection(jdbcUrl);
             String sql = "select * from memberinfo";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
@@ -121,9 +109,6 @@ public class memberDAO {
 
             }
 
-        } catch (ClassNotFoundException e) {
-            System.out.println("해당 클래스를 찾을수 없습니다.");
-            System.out.println("DBMS 드라이버 로드 실패");
         } catch (SQLException g) {
             System.out.println("DB연결 실패");
             g.printStackTrace();
@@ -156,8 +141,7 @@ public class memberDAO {
     }
  public void delmember(String UserID){
      try {
-         Class.forName("oracle.jdbc.driver.OracleDriver");
-         conn= DriverManager.getConnection(url,id, pwd);
+         conn = DriverManager.getConnection(jdbcUrl);
 
          String sql = "delete from memberinfo where userid=?";
 
@@ -188,9 +172,7 @@ public class memberDAO {
  }
 public void updatemember(memberVO member){
     try {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-
-        conn= DriverManager.getConnection(url,id, pwd);
+        conn = DriverManager.getConnection(jdbcUrl);
         String sql = "update memberinfo set userpwd=?, username=?, userphoto=? where userid=?";
     pstmt= conn.prepareStatement(sql);
 
