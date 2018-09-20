@@ -1,4 +1,7 @@
-<%@ page import="java.util.*" %><%--
+<%@ page import="java.util.*" %>
+<%@ page import="com.openproject.memberDAO" %>
+<% request.setCharacterEncoding("utf-8");%>
+<%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-08
@@ -6,21 +9,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
-
+<%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%if(request.getParameter("modi")!=null){
+<%
+    // DB와 연동하기 위한 객체 생성
+    memberDAO sql = new memberDAO();
+    //request에 modi라는 값이 있으면 실행
+    if(request.getParameter("modi")!=null){
 %>
+<%--수정창에서 sumit으로 받아온값  member 객체에 setProperty 해줌 --%>
 <jsp:useBean id="member" class="com.openproject.memberVO" scope="request"/>
 <jsp:setProperty name="member" property="*"/>
-<%
+<%  //만약 photo를 새로 저장하지 않으면 저장해논 이전값으로 되돌림 Null->이전사진명
       if(member.getUserPhoto()==null)
       {
           member.setUserPhoto(request.getParameter("preuserPhoto"));
       }
 
-  members.put(request.getParameter("modi"),member);
+      // member객체를 이용해 update메서드를 수행
+      sql.updatemember(member);
 }
 %>
 <html>
@@ -35,11 +43,13 @@
 
         td {
             text-align: center;
-            border: 1px solid black;
             width: 100px;
         }
-        .tablehead{
-            background-color: gray;
+        table{
+            border-collapse: collapse;
+        }
+        tr{
+            border-bottom: 1px solid #666666;
         }
 
     </style>
@@ -63,46 +73,29 @@
             photo
         </td>
         <td>
-            수정/삭제
+            수정 / 삭제
         </td>
     </tr>
-<%--    <%
-        //만약 application에 저장된 members 라는 속성이 존재 한다면
-        //members에 선언해줌
-        if (application.getAttribute("members") != null) {
-
-          Map members = (HashMap) application.getAttribute("members");
-          //  List members = (ArrayList) application.getAttribute("members");
-         //Iterator로 key값 정렬
-            Iterator membersKey = members.keySet().iterator();
-        //    membersKey 다음 값이 존재하면
-            while (membersKey.hasNext()) {
-
-
-            //list for문 돌림
-  // for (int i = 0; i<members.size();i++){
-
-                //member 변수에 해당 키의 밸류값 저장
-                memberVO member = (memberVO) members.get(membersKey.next());
-             //   memberVO member = (memberVO) members.get(i);
-    //id와 name 을 출력하는 tr,td작성
-    %>
     <%
-            }
-        }
-    %>--%>
+        //memberInfo에 저장된 모든 컬럼을 가져오는 select문을 list에 저장.
+        List<memberVO> memberlist = sql.selectMemberAll();
+        //el을 사용하기 위해 setAtrribute 해줌
+         request.setAttribute("members",memberlist);%>
+    <%-- List의 값 하나씩 출력.--%>
   <c:forEach items="${members}" var="member">
       <tr>
           <td>
-              ${member.value.userId}
+              ${member.userId}
           </td>
-          <td>${member.value.userPwd}
+          <td>${member.userPwd}
           </td>
-          <td>${member.value.userName}
+          <td>${member.userName}
           </td>
-          <td>${member.value.userPhoto}
+          <td>${member.userPhoto}
           </td>
-          <td><a href="remove.jsp?modiid=${member.value.userId}"><button>수정</button></a>/<a href="remove.jsp?removeid=${member.value.userId}"><button>삭제</button></a></td>
+          <%--수정 버튼 클릭시 modiid라는 키에 userID값을 get형식으로 보내줌
+              삭제 버튼 클릭시 removeid라는 키에 userID값을 get형식으로 보내줌--%>
+          <td><a href="remove.jsp?modiid=${member.userId}"><button>수정</button></a> / <a href="remove.jsp?removeid=${member.userId}"><button>삭제</button></a></td>
       </tr>
 
   </c:forEach>

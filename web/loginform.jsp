@@ -6,51 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
-<%request.setCharacterEncoding("utf-8");
-//Cookie[] cookies = request.getCookies();
-//String idcked="";
-//String idval="";
-//if(cookies!=null&&cookies.length>0){
-//
-//    for(int i=0;i<cookies.length;i++ ){
-//        if(cookies[i].getName().equals("preId")){
-//            idval = cookies[i].getValue();
-//            idcked="checked";
-//        }
-//
-//    }
-//
-//}
-%>
-
-
-<%--<script src="https://code.jquery.com/jquery-1.10.0.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>--%>
+<%request.setCharacterEncoding("utf-8");%>
 <html>
 <head>
-  <%--  <script>
-        $(document).ready(function () {
-        if($.cookie("idck")!=null){
-            $("input[name=idck]").prop("checked",true);
-           if($.cookie("preId")!=null) {
-                $("input[name=userId]").val($.cookie("preId"));
-            }
-        }else{
-            $.removeCookie("preId");
-        }
-          $("form").submit(function () {
-                if($("input[name=idck]").is(":checked")){
-                   $.cookie("idck","ck");
-                }else{
-                    $.removeCookie("idck");
-                }
-            });
-        });
-    </script>--%>
     <title>$Title$</title>
     <link rel="stylesheet" href="css/default.css">
     <style>
@@ -58,7 +18,6 @@
             padding-bottom: 10px;
             padding-top: 10px;
         }
-
     </style>
 </head>
 <body>
@@ -66,32 +25,26 @@
 <div class="content">
     <h2>Login</h2>
     <hr>
-<%--<%
-//    String msg = null;
-//     msg = (String)request.getAttribute("msg");
-//    if(msg!=null){
-        %>--%>
-        <p>${msg}</p>
-<%--        <%
-    }
-%>--%>
+    <%--로그인 실패시 저장한 msg값 출력--%>
+    <p style="color: red">${msg}</p>
     <form action="login.jsp" method="post">
         <table>
             <tr>
                 <td>아이디(이메일)</td>
-                <td><input type="text" name="userId" value="${cookie.preId.value}" >
-
+                <%--cookie에 저장된 이전 아이디값 출력, 혹은 없으면 빈 문자열 출력--%>
+                <td><input type="text" required name="userId" value="${cookie.preId.value}">
                     <input type="checkbox"
+                    <%--cookie가 있으면 체크를 했던것이기 때문에 checked 설정--%>
                     <c:if test="${cookie.containsKey('preId')}">
-                      checked
+                           checked
                     </c:if>
-                           name="idck" value="idck">
-                   </td>
+                           name="idck">
+                </td>
             </tr>
 
             <tr>
                 <td>비밀번호</td>
-                <td><input type="password" name="userPwd"></td>
+                <td><input type="password" required name="userPwd"></td>
             </tr>
 
             <tr>
@@ -99,8 +52,6 @@
             </tr>
         </table>
     </form>
-
 </div>
-
 </body>
 </html>

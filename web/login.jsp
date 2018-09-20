@@ -1,40 +1,21 @@
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="com.openproject.memberVO" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="com.openproject.memberDAO" %><%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-06
   Time: 오후 3:02
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
 <%
     request.setCharacterEncoding("utf-8");
 //login form에서 sumit 받은 값 String 변수에 저장한다.
-
-    String id = request.getParameter("userId");
-    String pwd = request.getParameter("userPwd");
     String ck = request.getParameter("idck");
 %>
-<%--<%
-    // Map 선언
-
-    Map members = new HashMap();
-    //ArrayList 선언
-   // List members = new ArrayList<memberVO>();
-    //만약 application에 저장된 members 라는 속성이 존재 한다면
-    //members에 선언해줌
-    if (application.getAttribute("members") != null) {
-
-        members = (HashMap) application.getAttribute("members");
-       // members=(ArrayList) application.getAttribute("members");
-        //System.out.println(application.getAttribute("members").toString());
-    }
-%>--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- useBean을 통해  sumit으로 받은 값을 setProperty를 이용해 값 저장 --%>
+<jsp:useBean id="inputmember" class="com.openproject.memberVO"/>
+<jsp:setProperty name="inputmember" property="*"/>
 
 <html>
 <head>
@@ -48,66 +29,47 @@
             padding-top: 10px;
         }
 
+
     </style>
 </head>
 <body>
 
+
 <%@include file="menu.jsp" %>
 <div class="content">
-
-
-
         <%
-        //id와 pwd가 null이 아니면
-        if(id!=null&&pwd!=null){
+         //sql 메서드를 사용할 객체 생성
+         memberDAO sql = new memberDAO();
+        // sumit으로 받아온 아이디를 WHERE절 조건으로 하는 select문 실행
+         memberVO memberCk = sql.selectMember(inputmember.getUserId());
 
-//List시 get(index)에 null이 아니고 input으로 입력 받은 id와 pwd값이 일치하면 redirect
- //   for(int i=0;i<members.size();i++){
-   //     if(members.get(i)!=null){
-//        memberVO memberCK = (memberVO) members.get(i);
- //           if(memberCK.getUserId().equals(id)&&memberCK.getUserPwd().equals(pwd)){
-//세션에 저장함 세션에 저장할떄는 pwd값은 ""로 입력
-    //새로 생성안하고 map에 있는 객체를 사용하게되면 객체의 비밀번호를 setUserPwd("")하면 map에있는 원래 객체값의 pwd도 ""이 되므로 다음에 로그인을 할수가 없다.
-             // memberCK.setUserPwd("");
-             // request.getSession(false).setAttribute("user",memberCK);
-//               request.getSession(false).setAttribute("user", new memberVO(memberCK.getUserId(),"",memberCK.getUserName(),memberCK.getUserPhoto()));
-//                response.sendRedirect("myPage.jsp");
-//            }
-//        }
-//    }
-//        }
-    // members에 id라는 key가 존재한다면
-   if(members.containsKey(id)){
-//아이디 값에 해당하는 memberVO값 받아오기
-    memberVO memberCk = (memberVO) members.get(id);
-//해당 아이디와 pwd와 일치하면
-if(id.equals(memberCk.getUserId())&&pwd.equals(memberCk.getUserPwd())){
-
-    if(ck!=null){
-    Cookie cookie = new Cookie("preId",memberCk.getUserId());
-   response.addCookie(cookie);
-    }else {
-      Cookie cookie = new Cookie("preId","");
-      cookie.setMaxAge(0);
-      response.addCookie(cookie);
+         if(memberCk.getUserId()!=null){
+    //해당 아이디와 pwd와 일치하면
+    if(inputmember.getUserId().equals(memberCk.getUserId())&&inputmember.getUserPwd().equals(memberCk.getUserPwd())){
+        //쿠키 생성
+        Cookie cookie = new Cookie("preId",memberCk.getUserId());
+        if(ck!=null){
+          response.addCookie(cookie);
+        }else {
+          cookie.setMaxAge(0);
+          response.addCookie(cookie);
+        }
+        //세션에 저장함 세션에 저장할떄는 pwd값은 ""로 입력
+        //새로 생성안하고 map에 있는 객체를 사용하게되면 객체의 비밀번호를 setUserPwd("")하면 map에있는 원래 객체값의 pwd도 ""이 되므로 다음에 로그인을 할수가 없다.
+        request.getSession(false).setAttribute("user", new memberVO(memberCk.getUserId(),"",memberCk.getUserName(),memberCk.getUserPhoto()));
+            response.sendRedirect("myPage.jsp");
+            } else {
+                request.setAttribute("msg","비번이 틀렸습니다.");
+    %>
+    <jsp:forward page="loginform.jsp"/>
+        <%
     }
-    //세션에 저장함 세션에 저장할떄는 pwd값은 ""로 입력
-    //새로 생성안하고 map에 있는 객체를 사용하게되면 객체의 비밀번호를 setUserPwd("")하면 map에있는 원래 객체값의 pwd도 ""이 되므로 다음에 로그인을 할수가 없다.
-    request.getSession(false).setAttribute("user", new memberVO(memberCk.getUserId(),"",memberCk.getUserName(),memberCk.getUserPhoto()));
-        response.sendRedirect("myPage.jsp");
         } else {
-            request.setAttribute("msg","비번이 틀렸습니다.");
-%> <jsp:forward page="loginform.jsp"/><%
-}
-
-    } else {
-            request.setAttribute("msg","아이디가 존재하지 않습니다.");
-%> <jsp:forward page="loginform.jsp"/><%
-}
-} else {
-             request.setAttribute("msg","아이디, 비번은 필수 입력입니다.");
-%> <jsp:forward page="loginform.jsp"/><%
-}
-%>
+                request.setAttribute("msg","아이디가 존재하지 않습니다.");
+    %>
+    <jsp:forward page="loginform.jsp"/>
+        <%
+    }
+    %>
 </body>
 </html>

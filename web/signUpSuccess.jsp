@@ -1,53 +1,28 @@
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="com.openproject.memberVO" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="com.openproject.memberDAO" %>
+<%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-06
   Time: 오후 2:48
   To change this template use File | Settings | File Templates.
 --%>
+<% request.setCharacterEncoding("utf-8");%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--사용자로부터 입력받은 회워가입 form 값은 UseBean을 통해 setProperty해줌--%>
 <jsp:useBean id="member" class="com.openproject.memberVO" scope="request"/>
-<jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
 <jsp:setProperty name="member" property="*"/>
 <%
-    request.setCharacterEncoding("utf-8");
-    //form에 저장된 값을 String 으로 변수 선언
-//    String id = request.getParameter("userId");
-//    String pwd = request.getParameter("userPwd");
-//    String name = request.getParameter("userName");
-//    String img = request.getParameter("userPhoto");
-    // 키는 String형식과 값은 memberVO인 HashMap()생성
-
-//    Map members = new HashMap<String, memberVO>();
-    //List members = new ArrayList<memberVO>();
-    //만약 application에 저장된 members 라는 속성이 존재 한다면
-    //members에 선언해줌
-  //  if (application.getAttribute("members") != null) {
-
-    //     members = (HashMap) application.getAttribute("members");
-       // members = (ArrayList) application.getAttribute("members");
-    //}
-    //members에 키는 id로 값은 memberVO객체로 새로 만들어 put해줌
-   members.put(member.getUserId(), member);
-
-  //  members.add(new memberVO(id, pwd, name, img));
-
-    //application에 members라는 속성의 값을 members값으로 엎어치기해줌
-//    application.setAttribute("members", members);
-    //저장완료후 loginform으로 Redirect해줌.
-//    response.sendRedirect("/loginform.jsp");
+    //sql 메서드를 사용할 객체 생성
+    memberDAO sql = new memberDAO();
+    // member값을 insert메서드를 통해 db에 저장해줌
+    sql.insertMember(member.getUserId(),member.getUserPwd(),member.getUserName(),member.getUserPhoto());
 %>
+<%--가입 후 loginform에 입력--%>
 <c:redirect url="loginform.jsp"/>
-
 
 <html>
 <head>
-
     <title>Title</title>
     <link rel="stylesheet" href="css/default.css">
 </head>
