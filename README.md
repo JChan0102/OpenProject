@@ -12,4 +12,6 @@ Open Project !
 
 2018.09.20 09:20 이전 수정되서 주석처리된 코드 삭제 처리, JDBC연동 해서 Application에 저장했던 회원 DB로 이동
 
-2018.09.20 13.20 DBCP 연동
+2018.09.20 13:20 DBCP 연동
+
+2018.09.20 15:00 memberDAO singleton 패턴 적용

@@ -33,7 +33,7 @@
 
     <%
         //sql문을 실행하기 위한 객체 생성
-        memberDAO sql = new memberDAO();
+        memberDAO sql = memberDAO.getInstance();
         //만약 removeid란 값이 있다면 (삭제버튼을 눌렀다면)
         if(request.getParameter("removeid")!=null){
             //sqld의 delete문을 실행 후 리스트로 다시 페이지 이동

@@ -14,7 +14,7 @@
 <jsp:setProperty name="member" property="*"/>
 <%
     //sql 메서드를 사용할 객체 생성
-    memberDAO sql = new memberDAO();
+    memberDAO sql = memberDAO.getInstance();
     // member값을 insert메서드를 통해 db에 저장해줌
     sql.insertMember(member.getUserId(),member.getUserPwd(),member.getUserName(),member.getUserPhoto());
 %>

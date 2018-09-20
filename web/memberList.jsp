@@ -1,5 +1,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="com.openproject.memberDAO" %>
+<%@ page import="com.openproject.memberVO" %>
 <% request.setCharacterEncoding("utf-8");%>
 <%--
   Created by IntelliJ IDEA.
@@ -14,7 +15,7 @@
 
 <%
     // DB와 연동하기 위한 객체 생성
-    memberDAO sql = new memberDAO();
+    memberDAO sql = memberDAO.getInstance();
     //request에 modi라는 값이 있으면 실행
     if(request.getParameter("modi")!=null){
 %>

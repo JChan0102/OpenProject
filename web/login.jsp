@@ -39,7 +39,7 @@
 <div class="content">
         <%
          //sql 메서드를 사용할 객체 생성
-         memberDAO sql = new memberDAO();
+          memberDAO sql = memberDAO.getInstance();
         // sumit으로 받아온 아이디를 WHERE절 조건으로 하는 select문 실행
          memberVO memberCk = sql.selectMember(inputmember.getUserId());
 
