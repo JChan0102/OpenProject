@@ -40,9 +40,10 @@ public class memberDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-
-            this.close();
+            close(pstmt);
+            close(conn);
         }
+
 
     }
 
@@ -65,8 +66,9 @@ public class memberDAO {
             System.out.println("DB연결 실패");
             g.printStackTrace();
         } finally {
-            this.close();
-
+            close(rs);
+            close(pstmt);
+            close(conn);
         }
         return new memberVO(null, null, null, null);
     }
@@ -91,8 +93,9 @@ public class memberDAO {
             System.out.println("DB연결 실패");
             g.printStackTrace();
         } finally {
-            this.close();
-
+            close(rs);
+            close(stmt);
+            close(conn);
         }
         return members;
     }
@@ -110,8 +113,8 @@ public class memberDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            this.close();
-
+            close(pstmt);
+            close(conn);
         }
     }
 
@@ -132,12 +135,14 @@ public class memberDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            this.close();
+
+            close(pstmt);
+            close(conn);
         }
 
     }
 
-    private void close() {
+     static void close(ResultSet rs) {
         if (rs != null) {
             try {
                 rs.close();
@@ -145,22 +150,17 @@ public class memberDAO {
                 e.printStackTrace();
             }
         }
-        if (stmt != null) {
-
-            try {
-                stmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        if (pstmt != null) {
-
-            try {
-                pstmt.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+    }
+     static void close(Statement stmt) {
+         if (stmt != null) {
+             try {
+                 stmt.close();
+             } catch (SQLException e) {
+                 e.printStackTrace();
+             }
+         }
+     }
+      static  void close (Connection conn){
         if (conn != null) {
             try {
                 conn.close();
