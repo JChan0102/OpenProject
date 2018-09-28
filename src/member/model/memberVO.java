@@ -1,4 +1,4 @@
-package com.openproject;
+package member.model;
 
 public class memberVO {
     private String userId;
@@ -53,5 +53,8 @@ public class memberVO {
 
     public void setUserPhoto(String userPhoto) {
         this.userPhoto = userPhoto;
+    }
+    public boolean pwdEquals (String pwd){
+      return this.userPwd.equals(pwd);
     }
 }

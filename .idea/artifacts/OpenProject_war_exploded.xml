@@ -8,10 +8,11 @@
           <element id="module-output" name="OpenProject" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="project" name="jstl" />
           <element id="library" level="project" name="mysql-connector-java-8.0.12" />
           <element id="library" level="project" name="ojdbc6" />
           <element id="library" level="project" name="commons-pool2-2.4.3" />
+          <element id="library" level="project" name="jstl" />
+          <element id="library" level="project" name="lib" />
         </element>
       </element>
     </root>

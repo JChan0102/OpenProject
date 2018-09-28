@@ -20,9 +20,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.32" level="application_server_libraries" />
-    <orderEntry type="library" name="jstl" level="project" />
     <orderEntry type="library" name="ojdbc6" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.12" level="project" />
     <orderEntry type="library" name="commons-pool2-2.4.3" level="project" />
+    <orderEntry type="library" name="jstl" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

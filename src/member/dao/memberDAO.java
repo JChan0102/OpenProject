@@ -1,4 +1,7 @@
-package com.openproject;
+package member.dao;
+
+import jdbc.JdbcUtil;
+import member.model.memberVO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,41 +21,31 @@ public class memberDAO {
         return memberdao;
     }
 
-    Connection conn = null;
     ResultSet rs = null;
     Statement stmt = null;
     PreparedStatement pstmt = null;
 
-    String jdbcUrl = "jdbc:apache:commons:dbcp:open";
-
-    public int insertMember(String userId, String userPwd, String userName, String userPhoto) {
+    public int insert(Connection conn, memberVO member) throws SQLException {
         int cnt=0;
         try {
-            conn = DriverManager.getConnection(jdbcUrl);
             String sql = "insert into memberinfo values (?,?,?,?)";
-
             pstmt = conn.prepareStatement(sql);
-
-            pstmt.setString(1, userId);
-            pstmt.setString(2, userPwd);
-            pstmt.setString(3, userName);
-            pstmt.setString(4, userPhoto);
+            pstmt.setString(1, member.getUserId());
+            pstmt.setString(2, member.getUserPwd());
+            pstmt.setString(3, member.getUserName());
+            pstmt.setString(4, member.getUserPhoto());
            cnt= pstmt.executeUpdate();
            return cnt;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            close(pstmt);
-            close(conn);
+        }finally {
+            JdbcUtil.close(pstmt);
         }
 
-        return cnt;
+
     }
 
 
-    public memberVO selectMember(String userId) {
+    public memberVO select(Connection conn, String userId) {
         try {
-            conn = DriverManager.getConnection(jdbcUrl);
 
             String sql = "select * from memberinfo where userid=?";
             pstmt = conn.prepareStatement(sql);
@@ -68,44 +61,36 @@ public class memberDAO {
             System.out.println("DB연결 실패");
             g.printStackTrace();
         } finally {
-            close(rs);
-            close(pstmt);
-            close(conn);
+            JdbcUtil.close(rs);
+            JdbcUtil.close(pstmt);
         }
         return new memberVO(null, null, null, null);
     }
 
-    public List<memberVO> selectMemberAll() {
+    public List<memberVO> selectAll(Connection conn) {
         List<memberVO> members = new ArrayList<>();
 
         try {
-
-            conn = DriverManager.getConnection(jdbcUrl);
             String sql = "select * from memberinfo";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-
                 members.add(new memberVO(rs.getString("userid"), rs.getString("userpwd"), rs.getString("username"), rs.getString("userphoto")));
-
             }
 
         } catch (SQLException g) {
             System.out.println("DB연결 실패");
             g.printStackTrace();
         } finally {
-            close(rs);
-            close(stmt);
-            close(conn);
-        }
+            JdbcUtil.close(rs);
+            JdbcUtil.close(stmt);
+      }
         return members;
     }
 
-    public void delmember(String UserID) {
+    public void delete(Connection conn, String UserID) {
         try {
-            conn = DriverManager.getConnection(jdbcUrl);
-
             String sql = "delete from memberinfo where userid=?";
 
             pstmt = conn.prepareStatement(sql);
@@ -115,14 +100,13 @@ public class memberDAO {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            close(pstmt);
-            close(conn);
+            JdbcUtil.close(pstmt);
         }
     }
 
-    public void updatemember(memberVO member) {
+    public void update(Connection conn,memberVO member) {
         try {
-            conn = DriverManager.getConnection(jdbcUrl);
+
             String sql = "update memberinfo set userpwd=?, username=?, userphoto=? where userid=?";
             pstmt = conn.prepareStatement(sql);
 
@@ -134,41 +118,11 @@ public class memberDAO {
 
             pstmt.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-
-            close(pstmt);
-            close(conn);
+            JdbcUtil.close(pstmt);
         }
 
-    }
-
-     static void close(ResultSet rs) {
-        if (rs != null) {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-     static void close(Statement stmt) {
-         if (stmt != null) {
-             try {
-                 stmt.close();
-             } catch (SQLException e) {
-                 e.printStackTrace();
-             }
-         }
-     }
-      static  void close (Connection conn){
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

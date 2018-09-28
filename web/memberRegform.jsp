@@ -5,7 +5,6 @@
   Time: 오후 4:44
   To change this template use File | Settings | File Templates.
 --%>
-<% request.setCharacterEncoding("utf-8");%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"  %>
 <%@ page pageEncoding="UTF-8" %>
 <script src="https://code.jquery.com/jquery-1.10.0.js"></script>
@@ -26,7 +25,7 @@
 <div class="content">
     <h2>SignUp</h2>
     <p style="color: red">${msg}</p>
-    <form action="signUpSuccess.jsp" method="post" id="regform">
+    <form action="<%=request.getContextPath()%>/signUpSuccess.jsp" method="post" id="regform" enctype="multipart/form-data" >
         <table>
             <tr>
                 <td><label for="userId">아이디(이메일)</label></td>
@@ -93,7 +92,7 @@
         ck(document.getElementById('userPwd'));
         ck(document.getElementById('userName'));
         if($('#ckuserId').html()!='사용 가능합니다.'||$('#ckuserPwd').html()!='사용 가능합니다.'||$('#ckuserName').html()!=''){
-            alert('회원가입 양식을 다시 확인하세요')
+            alert('회원가입 양식을 다시 확인하세요');
             return false;
         }else{
             return true;

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="member.model.memberVO" %><%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-06
@@ -11,12 +11,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--session에 user라는 값이 없으면 로그인을 한게 아니므로 알림 후 로그인창으로 이동--%>
+<%--
 <c:if test="${!(sessionScope.containsKey('user'))}">
     <script>
         alert("로그인 후 사용가능합니다!");
         location.href = "loginform.jsp";
     </script>
 </c:if>
+--%>
 
 <html>
 <head>
@@ -28,23 +30,24 @@
             padding-top: 10px;
         }
 
-        #memberPhoto {
-            background-image: url("images/none.png");
-            background-size: contain;
+        #memberPhoto>img {
             width: 150px;
             height: 150px;
             border: 1px solid gray;
             border-radius: 50%;
         }
+
     </style>
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="../css/default.css">
 </head>
 <body>
-<%@include file="menu.jsp" %>
+
+<%@include file="/menu.jsp" %>
 <div class="content">
     <h2>회원정보</h2>
-
-    <div id="memberPhoto"></div>
+<% memberVO member = (memberVO) session.getAttribute("user");
+%>
+    <div id="memberPhoto"><img alt="회원사진" src="<%=request.getContextPath()+"/uploadImg/"+member.getUserPhoto()%>">  </div>
     <hr>
     <table>
 
@@ -53,6 +56,7 @@
                 <%--session에 저장된 member객체 user를 통해 id값, name값 가져옴--%>
                 <td>id : ${sessionScope.get('user').getUserId()}
                 </td>
+            </tr><tr>
                 <td>이름 :${sessionScope.get('user').getUserName()}
                 </td>
             </tr>

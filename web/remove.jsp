@@ -1,5 +1,7 @@
-<%@ page import="com.openproject.memberVO" %>
-<%@ page import="com.openproject.memberDAO" %><%--
+<%@ page import="member.model.memberVO" %>
+<%@ page import="member.dao.memberDAO" %>
+<%@ page import="member.service.memModifyService" %>
+<%@ page import="member.service.memRemoveService" %><%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-12
@@ -33,21 +35,23 @@
 
     <%
         //sql문을 실행하기 위한 객체 생성
-        memberDAO sql = memberDAO.getInstance();
+        memRemoveService removeService = memRemoveService.getService();
         //만약 removeid란 값이 있다면 (삭제버튼을 눌렀다면)
         if(request.getParameter("removeid")!=null){
             //sqld의 delete문을 실행 후 리스트로 다시 페이지 이동
-            sql.delmember(request.getParameter("removeid"));
+            removeService.removeMember(request.getParameter("removeid"));
         response.sendRedirect("memberList.jsp");
     }
       //만약 modiid란 값이 있다면 (수정버튼을 눌렀다면)
     if(request.getParameter("modiid")!=null){
         //select문을 실행해 userid에 해당하는 pwd,name,photo값 가져옴
-        memberVO member = sql.selectMember(request.getParameter("modiid"));
+        memModifyService modifyService = memModifyService.getService();
+
+        memberVO member =  modifyService.selectMember(request.getParameter("modiid"));
         request.setAttribute("member",member);
         %>
 <%--멤버리스트 페이지로 modi라는 키에 userId값을 get형식으로 보내줌--%>
-<form action="memberList.jsp?modi=${requestScope.member.userId}" method="post">
+<form action="memberList.jsp?modi=${requestScope.member.userId}" method="post" enctype="multipart/form-data">
     <%@include file="menu.jsp" %>
     <h2> 회원 수정</h2>
 <table>
