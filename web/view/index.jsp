@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>$Title$</title>
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="../css/default.css">
 </head>
 <body onload="printClock()">
 <%@include file="menu.jsp" %>

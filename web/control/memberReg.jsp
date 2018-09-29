@@ -58,10 +58,10 @@
     signUpService service = signUpService.getService();
     int cnt=service.signUp(member);
     // member값을 insert메서드를 통해 db에 저장해줌
-    String loca = "loginform.jsp";
+    String loca = request.getContextPath()+"/view/loginform.jsp";
     if(cnt!=1){
         request.setAttribute("msg","이미 가입하신 이메일입니다!");
-        loca = "memberRegform.jsp";
+        loca = request.getContextPath()+"/view/memberRegform.jsp";
 
     }
         %><jsp:forward page="<%=loca%>"/>
@@ -71,7 +71,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="../css/default.css">
 </head>
 <body>
 

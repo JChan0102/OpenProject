@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>$Title$</title>
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="../css/default.css">
     <style>
         h2, td {
             padding-bottom: 10px;
@@ -25,7 +25,7 @@
 <div class="content">
     <h2>SignUp</h2>
     <p style="color: red">${msg}</p>
-    <form action="<%=request.getContextPath()%>/signUpSuccess.jsp" method="post" id="regform" enctype="multipart/form-data" >
+    <form action="<%=request.getContextPath()%>/control/memberReg.jsp" method="post" id="regform" enctype="multipart/form-data" >
         <table>
             <tr>
                 <td><label for="userId">아이디(이메일)</label></td>

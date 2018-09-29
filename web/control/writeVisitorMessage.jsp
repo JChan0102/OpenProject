@@ -1,4 +1,4 @@
-<%@ page import="service.WriteVisitorMessageService" %><%--
+<%@ page import="visitorMessage.service.WriteVisitorMessageService" %><%--
   Created by IntelliJ IDEA.
   User: JChan
   Date: 2018-09-26
@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <% request.setCharacterEncoding("utf-8");%>
-<jsp:useBean id="message" class="model.visitorMessageVO"/>
+<jsp:useBean id="message" class="visitorMessage.model.visitorMessageVO"/>
 <jsp:setProperty name="message" property="*"/>
 <html>
 <head>

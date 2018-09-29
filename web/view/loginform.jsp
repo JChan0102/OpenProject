@@ -27,7 +27,7 @@
     <hr>
     <%--로그인 실패시 저장한 msg값 출력--%>
     <p style="color: red">${msg}</p>
-    <form action="<%=request.getContextPath()%>/login.jsp" method="post">
+    <form action="<%=request.getContextPath()%>/control/login.jsp" method="post">
         <table>
             <tr>
                 <td>아이디(이메일)</td>

@@ -42,22 +42,20 @@
 </head>
 <body>
 
-<%@include file="/menu.jsp" %>
+<%@include file="/view/menu.jsp" %>
 <div class="content">
     <h2>회원정보</h2>
-<% memberVO member = (memberVO) session.getAttribute("user");
-%>
-    <div id="memberPhoto"><img alt="회원사진" src="<%=request.getContextPath()+"/uploadImg/"+member.getUserPhoto()%>">  </div>
+    <div id="memberPhoto"><img alt="회원사진" src="<%=request.getContextPath()%>/uploadImg/${user.userPhoto}">  </div>
     <hr>
     <table>
 
         <table>
             <tr>
                 <%--session에 저장된 member객체 user를 통해 id값, name값 가져옴--%>
-                <td>id : ${sessionScope.get('user').getUserId()}
+                <td>id : ${user.userId}
                 </td>
             </tr><tr>
-                <td>이름 :${sessionScope.get('user').getUserName()}
+                <td>이름 : ${user.userName}
                 </td>
             </tr>
         </table>

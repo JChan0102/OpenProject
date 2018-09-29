@@ -1,9 +1,10 @@
-package service;
+package visitorMessage.service;
 
-import dao.visitorMessageDAO;
+import service.ServiceException;
+import visitorMessage.dao.visitorMessageDAO;
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
-import model.visitorMessageVO;
+import visitorMessage.model.visitorMessageVO;
 
 import java.sql.Connection;
 import java.sql.SQLException;

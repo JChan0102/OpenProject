@@ -11,12 +11,12 @@
 <html>
 <head>
     <title>$Title$</title>
-    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="../css/default.css">
 </head>
 <%request.setCharacterEncoding("utf-8");%>
 <%@include file="menu.jsp" %>
 <body>
-<form action="writeVisitorMessage.jsp" method="post">
+<form action="../control/writeVisitorMessage.jsp" method="post">
 <table style="border: 1px solid gray">
     <tr>
         <td>name</td>

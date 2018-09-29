@@ -24,7 +24,7 @@ public class signInService {
 
     public void memSignIn(memberVO member, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
         Connection conn = null;
-        String url =request.getContextPath()+"/loginform.jsp";
+        String url =request.getContextPath()+"/view/loginform.jsp";
         try {
             conn= ConnectionProvider.getConnection();
             memberDAO dao = memberDAO.getInstance();

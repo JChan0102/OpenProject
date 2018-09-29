@@ -27,7 +27,7 @@ public class loginCheckFilter implements Filter {
 
             chain.doFilter(req, resp);
         }else {
-            RequestDispatcher dispatcher = req.getRequestDispatcher(((HttpServletRequest) req).getContextPath()+"/loginform.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher(((HttpServletRequest) req).getContextPath()+"/view/loginform.jsp");
             dispatcher.forward(req,resp);
             }
 

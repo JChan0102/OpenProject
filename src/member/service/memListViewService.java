@@ -6,6 +6,7 @@ import member.dao.memberDAO;
 import member.model.memberVO;
 import service.ServiceException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;

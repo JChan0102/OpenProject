@@ -10,7 +10,7 @@
     // 로그아웃시 session 초기화.
     request.setCharacterEncoding("utf-8");
     request.getSession(false).invalidate();
-    response.sendRedirect("index.jsp");
+    response.sendRedirect(request.getContextPath()+"/view/index.jsp");
 %>
 <html>
 <head>

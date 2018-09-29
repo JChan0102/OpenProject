@@ -1,4 +1,4 @@
-package model;
+package visitorMessage.model;
 
 public class visitorMessageVO {
 
@@ -53,3 +53,4 @@ public class visitorMessageVO {
         return userId.equals(this.userId);
     }
 }
+

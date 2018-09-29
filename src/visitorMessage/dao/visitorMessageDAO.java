@@ -1,9 +1,8 @@
-package dao;
+package visitorMessage.dao;
 
 
 import jdbc.JdbcUtil;
-import model.visitorMessageVO;
-
+import visitorMessage.model.visitorMessageVO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -13,7 +12,6 @@ import java.util.List;
 public class visitorMessageDAO {
 
     private static visitorMessageDAO dao = new visitorMessageDAO();
-
     public static visitorMessageDAO getInstance() {
         return dao;
     }
@@ -42,7 +40,7 @@ public class visitorMessageDAO {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1,endRow);
             pstmt.setInt(2,firstRow);
-   return new ArrayList<>();
+   return new ArrayList<visitorMessageVO>();
         }finally {
             JdbcUtil.close(pstmt);
         }
