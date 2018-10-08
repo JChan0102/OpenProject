@@ -27,10 +27,11 @@
     <hr>
     <%--로그인 실패시 저장한 msg값 출력--%>
     <p style="color: red">${msg}</p>
-    <form action="<%=request.getContextPath()%>/control/login.jsp" method="post">
+    <form action="${pageContext.request.contextPath}/control/login.jsp" method="post">
         <table>
             <tr>
                 <td>아이디(이메일)</td>
+
                 <%--cookie에 저장된 이전 아이디값 출력, 혹은 없으면 빈 문자열 출력--%>
                 <td><input type="text" required name="userId" value="${cookie.preId.value}">
                     <input type="checkbox"

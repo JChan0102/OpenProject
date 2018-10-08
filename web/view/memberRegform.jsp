@@ -25,7 +25,7 @@
 <div class="content">
     <h2>SignUp</h2>
     <p style="color: red">${msg}</p>
-    <form action="<%=request.getContextPath()%>/control/memberReg.jsp" method="post" id="regform" enctype="multipart/form-data" >
+    <form action="${pageContext.request.contextPath}/control/memberReg.jsp" method="post" id="regform" enctype="multipart/form-data" >
         <table>
             <tr>
                 <td><label for="userId">아이디(이메일)</label></td>
@@ -80,11 +80,9 @@
                     ptag.html('8~16자 영문 대소문자, 숫자, 특수문자를 모두 사용하세요.');
 
                 }
-
             }else{
                 ptag.html('');
             }
-
         }
     }
     $('#regform').submit(function () {

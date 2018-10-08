@@ -55,6 +55,7 @@
 
                         String uploadUri="/uploadImg";
                         String dir = request.getSession().getServletContext().getRealPath(uploadUri);
+                        System.out.println(dir);
                         File file = new File(dir,newFileName);
                         item.write(file);
                         member.setUserPhoto(newFileName);

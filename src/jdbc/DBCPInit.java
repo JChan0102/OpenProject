@@ -30,9 +30,9 @@ public class DBCPInit extends HttpServlet {
 
     private void initConnectionPool() {
         try {
-            String jdbcDriver = "jdbc:oracle:thin:localhost:1521:orcl";
-            String username = "scott";
-            String pw = "tiger";
+            String jdbcDriver = "jdbc:oracle:thin:@jchanoracle.cyzcgvziwly3.ap-northeast-2.rds.amazonaws.com:1521:orcl";
+            String username = "bit";
+            String pw = "bitcamp1234";
             ConnectionFactory connFactory = new DriverManagerConnectionFactory(jdbcDriver, username, pw);
             // PoolableConnection을 생성하는 팩토리 생성.
             // DBCP는 커넥션을 보관할 때 PoolableConnection 을 사용

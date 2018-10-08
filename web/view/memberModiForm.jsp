@@ -30,7 +30,7 @@
 </head>
 <body>
 <%--멤버리스트 페이지로 modi라는 키에 userId값을 get형식으로 보내줌--%>
-<form action="../control/memberModify.jsp?modi=${requestScope.member.userId}" method="post" enctype="multipart/form-data">
+<form action="<%=request.getContextPath()%>/control/memberModify.jsp?modi=${requestScope.member.userId}" method="post" enctype="multipart/form-data">
     <%@include file="../view/menu.jsp" %>
     <h2> 회원 수정</h2>
     <table>

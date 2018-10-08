@@ -17,9 +17,9 @@ public class loginCheckFilter implements Filter {
         HttpServletResponse httpServletResponse = (HttpServletResponse) resp;
         HttpSession session = httpServletRequest.getSession(false);
         boolean login =false;
-        if(session!=null){
-            if(session.getAttribute("user")!=null){
-                login=true;
+        if(session!=null){ //세션이 있는지 없는지
+            if(session.getAttribute("user")!=null){ //내가 로그인시 저장해논 세션속성이 있는지 없는지
+                login=true; // 있으면 트루
             }
         }
 
@@ -27,11 +27,11 @@ public class loginCheckFilter implements Filter {
 
             chain.doFilter(req, resp);
         }else {
-            RequestDispatcher dispatcher = req.getRequestDispatcher(((HttpServletRequest) req).getContextPath()+"/view/loginform.jsp");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/view/loginform.jsp");
             dispatcher.forward(req,resp);
             }
 
-    }
+}
 
     public void init(FilterConfig config) throws ServletException {
 

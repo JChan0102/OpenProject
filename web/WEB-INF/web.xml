@@ -34,4 +34,5 @@
         <filter-name>loginCheck</filter-name>
         <url-pattern>/myPage/myPage.jsp</url-pattern>
     </filter-mapping>
+
 </web-app>

@@ -1,13 +1,3 @@
-<%@ page import="java.util.*" %>
-<%@ page import="member.dao.memberDAO" %>
-<%@ page import="member.model.memberVO" %>
-<%@ page import="member.service.memListViewService" %>
-<%@ page import="member.service.memModifyService" %>
-<%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
-<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
-<%@ page import="org.apache.commons.fileupload.FileItem" %>
-<%@ page import="java.io.File" %>
-<% request.setCharacterEncoding("utf-8");%>
 <%--
   Created by IntelliJ IDEA.
   User: JChan
@@ -77,7 +67,7 @@
           </td>
           <td>${member.userName}
           </td>
-          <td>${member.userPhoto}
+          <td ><img style="width: 160px" alt="회원사진" src="${pageContext.request.contextPath}/uploadImg/${member.userPhoto}">
           </td>
           <%--수정 버튼 클릭시 modiid라는 키에 userID값을 get형식으로 보내줌
               삭제 버튼 클릭시 removeid라는 키에 userID값을 get형식으로 보내줌--%>

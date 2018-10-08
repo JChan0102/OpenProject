@@ -1,5 +1,4 @@
 <%@ page import="member.model.memberVO" %>
-<%@ page import="member.dao.memberDAO" %>
 <%@ page import="member.service.memModifyService" %>
 <%@ page import="member.service.memRemoveService" %><%--
   Created by IntelliJ IDEA.
@@ -9,30 +8,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="../css/default.css">
-
-    <style>
-        h2, td {
-            padding-bottom: 10px;
-            padding-top: 10px;
-        }
-
-        td {
-            text-align: center;
-            border: 1px solid black;
-            width: 100px;
-        }
-
-
-    </style>
 </head>
 <body>
-
+<jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
     <%
         //sql문을 실행하기 위한 객체 생성
         memRemoveService removeService = memRemoveService.getService();
@@ -40,7 +22,7 @@
         if(request.getParameter("removeid")!=null){
             //sqld의 delete문을 실행 후 리스트로 다시 페이지 이동
             removeService.removeMember(request.getParameter("removeid"));
-        response.sendRedirect(request.getContextPath()+"/control/memberList.jsp");
+        response.sendRedirect("/control/memberList.jsp");
     }
       //만약 modiid란 값이 있다면 (수정버튼을 눌렀다면)
     if(request.getParameter("modiid")!=null){
@@ -49,7 +31,7 @@
 
         memberVO member =  modifyService.selectMember(request.getParameter("modiid"));
         request.setAttribute("member",member);
-        RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath()+"/view/memberModiForm.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/view/memberModiForm.jsp");
         dispatcher.forward(request,response);
     }%>
 </body>
