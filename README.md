@@ -22,5 +22,5 @@ Open Project !
 
 2018.09.29 16:40 회원 관련 요청처리,요청 받는 jsp 구분
 
-2018.10.08 19:40 요청받는 jsp파일 java명려어 jstl,el로 정리, xml,json형식으로 변환 구현,
+2018.10.08 19:40 oracleAWS RDS로 변경,요청받는 jsp파일 java명려어 jstl,el로 정리, xml,json형식으로 변환 구현,
   ajax로 변환된 xml,json으로 회원리스트 구현
