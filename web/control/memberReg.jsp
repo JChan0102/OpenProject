@@ -5,13 +5,6 @@
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.io.File" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: JChan
-  Date: 2018-09-06
-  Time: 오후 2:48
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--사용자로부터 입력받은 회워가입 form 값은 UseBean을 통해 setProperty해줌--%>

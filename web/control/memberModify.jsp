@@ -4,13 +4,7 @@
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="java.io.File" %><%--
-  Created by IntelliJ IDEA.
-  User: JChan
-  Date: 2018-09-29
-  Time: 오후 2:36
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.io.File" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

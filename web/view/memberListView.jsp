@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: JChan
-  Date: 2018-09-08
-  Time: 오전 12:35
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -14,27 +7,10 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="../css/default.css">
-    <style>
-        h2, td {
-            padding-bottom: 10px;
-            padding-top: 10px;
-        }
-
-        td {
-            text-align: center;
-            width: 100px;
-        }
-        table{
-            border-collapse: collapse;
-        }
-        tr{
-            border-bottom: 1px solid #666666;
-        }
-
-    </style>
+    <link rel="stylesheet" href="../css/memberList.css">
 </head>
 <body>
-
+<div style="width: 750px; margin: auto">
 <%@include file="menu.jsp" %>
 <h2>회원리스트</h2>
 <table>
@@ -84,6 +60,7 @@
 </c:choose>
 </table>
 
-
+</div>
 </body>
+
 </html>

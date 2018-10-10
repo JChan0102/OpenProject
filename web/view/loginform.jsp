@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: JChan
-  Date: 2018-09-05
-  Time: 오후 4:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -21,7 +14,8 @@
     </style>
 </head>
 <body>
-<%@include file="menu.jsp" %>
+<div style="width: 750px; margin: auto">
+    <%@include file="menu.jsp" %>
 <div class="content">
     <h2>Login</h2>
     <hr>
@@ -53,6 +47,7 @@
             </tr>
         </table>
     </form>
+</div>
 </div>
 </body>
 </html>

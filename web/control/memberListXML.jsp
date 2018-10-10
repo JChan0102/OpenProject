@@ -9,7 +9,9 @@
     //memberInfo에 저장된 모든 컬럼을 가져오는 select문을 list에 저장.
     List<memberVO> memberlist = listViewService.getmemberList();
     //el을 사용하기 위해 setAtrribute 해줌
-    request.setAttribute("members",memberlist);%>
+    request.setAttribute("members",memberlist);
+    //XML형식의 파일 생성
+%>
 <members>
     <c:forEach items="${members}" var="member">
         <member>

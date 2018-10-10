@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: JChan
-  Date: 2018-09-29
-  Time: 오후 2:31
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="members" class="java.util.HashMap" scope="application"/>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -29,6 +22,7 @@
     </style>
 </head>
 <body>
+<div style="width: 750px; margin: auto">
 <%--멤버리스트 페이지로 modi라는 키에 userId값을 get형식으로 보내줌--%>
 <form action="<%=request.getContextPath()%>/control/memberModify.jsp?modi=${requestScope.member.userId}" method="post" enctype="multipart/form-data">
     <%@include file="../view/menu.jsp" %>
@@ -79,7 +73,7 @@
 
         </tr>
     </table>
-</form>
+</form></div>
 </body>
 </html>
 

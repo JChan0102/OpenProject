@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: JChan
-  Date: 2018-09-05
-  Time: 오후 4:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,8 +5,8 @@
     <link rel="stylesheet" href="../css/default.css">
 </head>
 <body onload="printClock()">
-<%@include file="menu.jsp" %>
-<body>
+<div style="width: 750px; margin: auto">
+    <%@include file="menu.jsp" %>
 <div style="border:1px solid #dedede; width:600px; height:250px; line-height:250px; color:#666;font-size:100px; text-align:center;"
      id="clock">
 </div>
@@ -52,6 +45,6 @@
 
 
 </script>
-
+</div>
 </body>
 </html>

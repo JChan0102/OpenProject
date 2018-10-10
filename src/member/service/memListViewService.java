@@ -34,7 +34,7 @@ public class memListViewService {
                 JdbcUtil.close(conn);
             }
     }
-
+    //memberList값을 json형태의 String으로 반환하는 메서드
     public String jsonMemberList(){
         List<memberVO> list = getmemberList();
         String stringList = "{\"members\" : [ ";

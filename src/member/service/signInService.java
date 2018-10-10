@@ -24,7 +24,7 @@ public class signInService {
 
     public void memSignIn(memberVO member, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
         Connection conn = null;
-        String url =request.getContextPath()+"/view/loginform.jsp";
+        String url ="/view/loginform.jsp";
         try {
             conn= ConnectionProvider.getConnection();
             memberDAO dao = memberDAO.getInstance();
@@ -58,7 +58,7 @@ public class signInService {
             response.addCookie(cookie);
         }
         request.getSession(false).setAttribute("user", new memberVO(member.getUserId(),"",member.getUserName(),member.getUserPhoto()));
-        return request.getContextPath()+"/myPage/myPage.jsp";
+        return "/myPage/myPage.jsp";
     }
 
 }
