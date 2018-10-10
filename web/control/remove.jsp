@@ -16,7 +16,7 @@
         if(request.getParameter("removeid")!=null){
             //sqld의 delete문을 실행 후 리스트로 다시 페이지 이동
             removeService.removeMember(request.getParameter("removeid"));
-        response.sendRedirect("/control/memberList.jsp");
+        response.sendRedirect(request.getContextPath()+"/control/memberList.jsp");
     }
       //만약 modiid란 값이 있다면 (수정버튼을 눌렀다면)
     if(request.getParameter("modiid")!=null){

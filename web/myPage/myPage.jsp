@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../css/default.css">
 </head>
 <body>
-
+<div style="width: 750px; margin: auto">
 <%@include file="/view/menu.jsp" %>
 <div class="content">
     <h2>회원정보</h2>
@@ -43,6 +43,7 @@
 
     </table>
 
+</div>
 </div>
 </body>
 </html>
