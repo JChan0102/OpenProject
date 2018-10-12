@@ -1,4 +1,4 @@
-<%@ page import="member.service.signUpService" %>
+<%@ page import="member.service.SignUpService" %>
 <%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
 <%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
 <%@ page import="java.util.List" %>
@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--사용자로부터 입력받은 회워가입 form 값은 UseBean을 통해 setProperty해줌--%>
 <%request.setCharacterEncoding("utf-8");%>
-<jsp:useBean id="member" class="member.model.memberVO" scope="request"/>
+<jsp:useBean id="member" class="member.model.MemberVO" scope="request"/>
 <%
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
@@ -48,7 +48,7 @@
         }
     }
     //sql 메서드를 사용할 객체 생성
-    signUpService service = signUpService.getService();
+    SignUpService service = SignUpService.getService();
     int cnt=service.signUp(member);
     // member값을 insert메서드를 통해 db에 저장해줌
     String loca ="/view/loginform.jsp";

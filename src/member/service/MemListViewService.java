@@ -2,31 +2,30 @@ package member.service;
 
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
-import member.dao.memberDAO;
-import member.model.memberVO;
+import member.dao.MemberDAO;
+import member.model.MemberVO;
 import service.ServiceException;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
-public class memListViewService {
+public class MemListViewService {
 
-    private static memListViewService service = new memListViewService();
+    private static MemListViewService service = new MemListViewService();
 
-    private memListViewService() { }
+    private MemListViewService() { }
 
-    public static memListViewService getService(){
+    public static MemListViewService getService(){
         return service;
     }
 
-    public List<memberVO> getmemberList() throws ServiceException {
+    public List<MemberVO> getmemberList() throws ServiceException {
             Connection conn = null;
             try {
                 conn = ConnectionProvider.getConnection();
-                memberDAO dao = memberDAO.getInstance();
+                MemberDAO dao = MemberDAO.getInstance();
                 return dao.selectAll(conn);
             } catch (SQLException e) {
                 throw new ServiceException("메세지등록 실패 : "+ e.getMessage(),e);
@@ -36,14 +35,14 @@ public class memListViewService {
     }
     //memberList값을 json형태의 String으로 반환하는 메서드
     public String jsonMemberList(){
-        List<memberVO> list = getmemberList();
+        List<MemberVO> list = getmemberList();
         String stringList = "{\"members\" : [ ";
 
         Iterator iterator = list.iterator();
 
         while (iterator.hasNext()){
 
-         memberVO member = (memberVO) iterator.next();
+         MemberVO member = (MemberVO) iterator.next();
 
          stringList+= "{ \"userId\" : \""+ member.getUserId()+ "\", "+
                       " \"userPwd\" : \""+ member.getUserPwd()+ "\", "+

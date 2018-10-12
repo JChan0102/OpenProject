@@ -2,27 +2,27 @@ package member.service;
 
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
-import member.dao.memberDAO;
-import member.model.memberVO;
+import member.dao.MemberDAO;
+import member.model.MemberVO;
 import service.ServiceException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class memModifyService {
-    private static memModifyService service = new memModifyService();
-    private memModifyService(){}
+public class MemModifyService {
+    private static MemModifyService service = new MemModifyService();
+    private MemModifyService(){}
 
-    public static memModifyService getService(){
+    public static MemModifyService getService(){
         return service;
     }
 
-    public memberVO selectMember(String memberId) throws ServiceException {
+    public MemberVO selectMember(String memberId) throws ServiceException {
         Connection conn = null;
 
         try {
             conn= ConnectionProvider.getConnection();
-            memberDAO dao = memberDAO.getInstance();
+            MemberDAO dao = MemberDAO.getInstance();
             return dao.select(conn,memberId);
 
         } catch (SQLException e) {
@@ -32,11 +32,11 @@ public class memModifyService {
         }
     }
 
-    public void updateMember(memberVO member) throws ServiceException {
+    public void updateMember(MemberVO member) throws ServiceException {
         Connection conn = null;
         try {
             conn= ConnectionProvider.getConnection();
-            memberDAO dao = memberDAO.getInstance();
+            MemberDAO dao = MemberDAO.getInstance();
             dao.update(conn,member);
         } catch (SQLException e) {
            throw new ServiceException("메세지등록 실패 : "+ e.getMessage(),e);

@@ -2,28 +2,28 @@ package member.service;
 
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
-import member.dao.memberDAO;
-import member.model.memberVO;
+import member.dao.MemberDAO;
+import member.model.MemberVO;
 import service.ServiceException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class signUpService {
-    private static signUpService service = new signUpService();
+public class SignUpService {
+    private static SignUpService service = new SignUpService();
 
-    private signUpService(){};
+    private SignUpService(){};
 
-    public static signUpService getService(){
+    public static SignUpService getService(){
 
         return service;
     }
 
-    public int signUp(memberVO member) throws ServiceException {
+    public int signUp(MemberVO member) throws ServiceException {
         Connection conn = null;
         try {
             conn = ConnectionProvider.getConnection();
-            memberDAO dao = memberDAO.getInstance();
+            MemberDAO dao = MemberDAO.getInstance();
            return dao.insert(conn,member);
         } catch (SQLException e) {
            throw new ServiceException("메세지등록 실패 : "+ e.getMessage(),e);

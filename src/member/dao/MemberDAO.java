@@ -1,22 +1,22 @@
 package member.dao;
 
 import jdbc.JdbcUtil;
-import member.model.memberVO;
+import member.model.MemberVO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class memberDAO {
+public class MemberDAO {
 
-    private static memberDAO memberdao = null;
+    private static MemberDAO memberdao = null;
 
-    private memberDAO() {
+    private MemberDAO() {
     }
 
-    public static memberDAO getInstance() {
+    public static MemberDAO getInstance() {
         if (memberdao == null) {
-            memberdao = new memberDAO();
+            memberdao = new MemberDAO();
         }
         return memberdao;
     }
@@ -25,7 +25,7 @@ public class memberDAO {
     Statement stmt = null;
     PreparedStatement pstmt = null;
 
-    public int insert(Connection conn, memberVO member) throws SQLException {
+    public int insert(Connection conn, MemberVO member) throws SQLException {
         int cnt=0;
         try {
             String sql = "insert into memberinfo values (?,?,?,?)";
@@ -44,7 +44,7 @@ public class memberDAO {
     }
 
 
-    public memberVO select(Connection conn, String userId) {
+    public MemberVO select(Connection conn, String userId) {
         try {
 
             String sql = "select * from memberinfo where userid=?";
@@ -53,7 +53,7 @@ public class memberDAO {
             rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return new memberVO(rs.getString("userid"), rs.getString("userpwd"), rs.getString("username"), rs.getString("userphoto"));
+                return new MemberVO(rs.getString("userid"), rs.getString("userpwd"), rs.getString("username"), rs.getString("userphoto"));
 
             }
 
@@ -64,11 +64,11 @@ public class memberDAO {
             JdbcUtil.close(rs);
             JdbcUtil.close(pstmt);
         }
-        return new memberVO(null, null, null, null);
+        return new MemberVO(null, null, null, null);
     }
 
-    public List<memberVO> selectAll(Connection conn) {
-        List<memberVO> members = new ArrayList<>();
+    public List<MemberVO> selectAll(Connection conn) {
+        List<MemberVO> members = new ArrayList<>();
 
         try {
             String sql = "select * from memberinfo";
@@ -76,7 +76,7 @@ public class memberDAO {
             rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                members.add(new memberVO(rs.getString("userid"), rs.getString("userpwd"), rs.getString("username"), rs.getString("userphoto")));
+                members.add(new MemberVO(rs.getString("userid"), rs.getString("userpwd"), rs.getString("username"), rs.getString("userphoto")));
             }
 
         } catch (SQLException g) {
@@ -104,7 +104,7 @@ public class memberDAO {
         }
     }
 
-    public void update(Connection conn,memberVO member) {
+    public void update(Connection conn, MemberVO member) {
         try {
 
             String sql = "update memberinfo set userpwd=?, username=?, userphoto=? where userid=?";

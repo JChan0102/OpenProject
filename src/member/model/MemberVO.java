@@ -1,12 +1,12 @@
 package member.model;
 
-public class memberVO {
+public class MemberVO {
     private String userId;
     private String userPwd;
     private String userName;
     private String userPhoto;
-  public memberVO(){}
-    public memberVO(String userId, String userPwd, String userName, String userPhoto) {
+  public MemberVO(){}
+    public MemberVO(String userId, String userPwd, String userName, String userPhoto) {
         this.userId = userId;
         this.userPwd = userPwd;
         this.userName = userName;
@@ -15,7 +15,7 @@ public class memberVO {
 
     @Override
     public String toString() {
-        return "memberVO{" +
+        return "MemberVO{" +
                 "userId='" + userId + '\'' +
                 ", userPwd='" + userPwd + '\'' +
                 ", userName='" + userName + '\'' +

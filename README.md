@@ -28,3 +28,5 @@ Open Project !
 2018.10.10 18:50 XML,JSON 주석 추가 및 코드 정리, serviceException Exception->RuntimeException 으로 종속 변경
 
 2018.10.10 19:30 AWS에 서버 올릴시 나타는 경로 오류 문제 수정
+
+2018.10.12 18:10 방명록 게시글 view 구현

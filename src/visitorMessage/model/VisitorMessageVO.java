@@ -1,6 +1,6 @@
 package visitorMessage.model;
 
-public class visitorMessageVO {
+public class VisitorMessageVO {
 
     private int id;
     private String userName;

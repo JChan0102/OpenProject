@@ -2,8 +2,9 @@ package member.service;
 
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
-import member.dao.memberDAO;
-import member.model.memberVO;
+import member.dao.MemberDAO;
+import member.model.MemberSessionVO;
+import member.model.MemberVO;
 import service.ServiceException;
 
 import javax.servlet.RequestDispatcher;
@@ -15,21 +16,21 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class signInService {
-    private static signInService service = new signInService();
-    private signInService(){}
-    public static signInService getService(){
+public class SignInService {
+    private static SignInService service = new SignInService();
+    private SignInService(){}
+    public static SignInService getService(){
         return service;
     }
 
-    public void memSignIn(memberVO member, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
+    public void memSignIn(MemberVO member, HttpServletRequest request, HttpServletResponse response) throws ServiceException, IOException, ServletException {
         Connection conn = null;
         String url ="/view/loginform.jsp";
         try {
             conn= ConnectionProvider.getConnection();
-            memberDAO dao = memberDAO.getInstance();
+            MemberDAO dao = MemberDAO.getInstance();
 
-            memberVO Dbmember = dao.select(conn,member.getUserId());
+            MemberVO Dbmember = dao.select(conn,member.getUserId());
             if(Dbmember.getUserId()!=null){
              if(Dbmember.pwdEquals(member.getUserPwd())){
                  url = CookieSessionCreate(Dbmember,request,response);
@@ -48,7 +49,7 @@ public class signInService {
 
     }
 
-    private String CookieSessionCreate(memberVO member, HttpServletRequest request, HttpServletResponse response){
+    private String CookieSessionCreate(MemberVO member, HttpServletRequest request, HttpServletResponse response){
         String ck = request.getParameter("idck");
         Cookie cookie = new Cookie("preId",member.getUserId());
         if(ck!=null){
@@ -57,7 +58,7 @@ public class signInService {
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
-        request.getSession(false).setAttribute("user", new memberVO(member.getUserId(),"",member.getUserName(),member.getUserPhoto()));
+        request.getSession(false).setAttribute("user", new MemberSessionVO(member.getUserId(),member.getUserName(),member.getUserPhoto()));
         return "/myPage/myPage.jsp";
     }
 

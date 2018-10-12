@@ -2,25 +2,25 @@ package member.service;
 
 import jdbc.ConnectionProvider;
 import jdbc.JdbcUtil;
-import member.dao.memberDAO;
+import member.dao.MemberDAO;
 import service.ServiceException;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class memRemoveService {
-    private static memRemoveService service = new memRemoveService();
+public class MemRemoveService {
+    private static MemRemoveService service = new MemRemoveService();
 
-    public static memRemoveService getService() {
+    public static MemRemoveService getService() {
         return service;
     }
-    private memRemoveService(){};
+    private MemRemoveService(){};
 
     public void removeMember(String userId) throws ServiceException {
         Connection conn =null;
         try {
             conn= ConnectionProvider.getConnection();
-            memberDAO dao = memberDAO.getInstance();
+            MemberDAO dao = MemberDAO.getInstance();
             dao.delete(conn,userId);
         } catch (SQLException e) {
             JdbcUtil.rollback(conn);
